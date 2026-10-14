@@ -1,10 +1,5 @@
-﻿const express = require('express');
+const express = require("express");
 const app = express();
-
 app.use(express.json());
-app.use(express.static('public'));
-
-const lojaRoutes = require('./routes/estoque');
-app.use('/loja', lojaRoutes);
-
+app.use("/loja", require("./routes/estoque"));
 module.exports = app;

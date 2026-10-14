@@ -1,0 +1,148 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: #f3f4f6;
+    color: #222;
+    font: 16px Arial, sans-serif
+}
+
+header {
+    background: #315b48;
+    color: white;
+    padding: 22px max(20px, calc((100% - 1050px)/2))
+}
+
+header h1 {
+    margin: 0 0 6px;
+    font-size: 27px
+}
+
+header p {
+    margin: 0
+}
+
+main {
+    width: min(1050px, calc(100% - 30px));
+    margin: 22px auto
+}
+
+.abas {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px
+}
+
+button {
+    background: #e3e8e4;
+    color: #222;
+    border: 0;
+    border-radius: 5px;
+    padding: 10px 14px;
+    cursor: pointer
+}
+
+.aba.ativa,
+.principal {
+    background: #315b48;
+    color: white
+}
+
+.pagina {
+    display: none
+}
+
+.pagina.ativa {
+    display: block
+}
+
+.cartao {
+    background: white;
+    padding: 18px;
+    margin-bottom: 14px;
+    border: 1px solid #ddd;
+    border-radius: 7px
+}
+
+h2 {
+    font-size: 19px;
+    margin: 0 0 14px
+}
+
+.grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    align-items: end;
+    gap: 12px
+}
+
+.grade.curta {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 220px))
+}
+
+label {
+    display: grid;
+    gap: 6px;
+    font-size: 14px
+}
+
+input,
+select {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font: inherit
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 12px;
+    font-size: 14px
+}
+
+th,
+td {
+    border-bottom: 1px solid #ddd;
+    padding: 9px 7px;
+    text-align: left
+}
+
+th {
+    background: #f0f3f1
+}
+
+.vazio,
+.erro {
+    padding: 12px 0;
+    color: #555
+}
+
+.erro {
+    color: #9b2424
+}
+
+#mensagem {
+    min-height: 22px;
+    color: #315b48
+}
+
+@media(max-width:600px) {
+    .abas {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr)
+    }
+
+    .abas button {
+        padding: 9px 5px
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap
+    }
+}
