@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Estoque da loja</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Estoque da loja</h1>
+        <p>Controle simples de produtos e movimentações</p>
+    </header>
+    <main>
+        <nav class="abas"><button class="aba ativa" data-pagina="produtos">Produtos</button><button class="aba"
+                data-pagina="movimentacoes">Movimentações</button><button class="aba"
+                data-pagina="relatorios">Relatórios</button></nav>
+        <section id="produtos" class="pagina ativa">
+            <div class="cartao">
+                <h2>Cadastrar produto</h2>
+                <form id="form-produto" class="grade"><label>Nome<input name="nome"
+                            required></label><label>Quantidade<input name="quantidade" type="number" min="0"
+                            required></label><label>Valor por unidade<input name="valor_unidade" type="number" min="0"
+                            step="0.01" required></label><label>Categoria<input name="categoria"
+                            required></label><button class="principal">Cadastrar produto</button></form>
+            </div>
+            <div class="cartao">
+                <h2>Produtos cadastrados <button id="atualizar-produtos">Atualizar</button></h2>
+                <div id="lista-produtos"></div>
+            </div>
+            <div class="cartao">
+                <h2>Valor do estoque por categoria</h2><button id="carregar-categorias">Ver valores</button>
+                <div id="lista-categorias"></div>
+            </div>
+            <div class="cartao">
+                <h2>Produtos no limite de estoque</h2>
+                <form id="form-limite" class="grade curta"><label>Limite mínimo<input name="limite_minimo" type="number"
+                            value="0"></label><label>Limite máximo<input name="limite_maximo" type="number"
+                            value="100"></label><button>Buscar</button></form>
+                <div id="lista-limite"></div>
+            </div>
+        </section>
+        <section id="movimentacoes" class="pagina">
+            <div class="cartao">
+                <h2>Registrar movimentação</h2>
+                <form id="form-movimentacao" class="grade"><label>Produto<select name="id_produtos"
+                            required></select></label><label>Tipo<select name="tipo">
+                            <option>Entrada</option>
+                            <option>Saída</option>
+                        </select></label><label>Quantidade<input name="quantidade" type="number" min="1"
+                            required></label><label>Data e hora<input name="dt" type="datetime-local"
+                            required></label><button class="principal">Registrar</button></form>
+            </div>
+            <div class="cartao">
+                <h2>Movimentações recentes <button id="atualizar-movimentacoes">Atualizar</button></h2>
+                <div id="lista-movimentacoes"></div>
+            </div>
+        </section>
+        <section id="relatorios" class="pagina">
+            <div class="cartao">
+                <h2>Relatório de movimentações</h2>
+                <form id="form-relatorio" class="grade curta"><label>Data inicial<input name="data_inicial" type="date"
+                            required></label><label>Data final<input name="data_final" type="date"
+                            required></label><button>Gerar relatório</button></form>
+                <div id="resultado-relatorio"></div>
+            </div>
+            <div class="cartao">
+                <h2>Maiores saídas</h2>
+                <form id="form-saidas" class="grade curta"><label>Data inicial<input name="data_inicio" type="date"
+                            required></label><label>Data final<input name="data_fim" type="date"
+                            required></label><button>Buscar saídas</button></form>
+                <div id="resultado-saidas"></div>
+            </div>
+        </section>
+        <p id="mensagem" role="status"></p>
+    </main>
+    <script src="app.js"></script>
+</body>
+
+</html>

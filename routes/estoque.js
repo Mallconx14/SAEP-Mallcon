@@ -152,8 +152,8 @@ router.get('/maiores_saidas', (req, res) => {
             SUM(m.quantidade * p.valor_unidade) AS valor_total_financeiro
         FROM movimentacoes m
         INNER JOIN produtos p ON m.id_produtos = p.id
-        WHERE m.tipo = 'saida' 
-          AND m.dt BETWEEN ? AND ?
+        WHERE LOWER(m.tipo) IN ('saida', 'saída') 
+          AND m.dt >= ? AND m.dt < DATE_ADD(?, INTERVAL 1 DAY)
         GROUP BY p.id, p.nome
         ORDER BY quantidade_total_saida DESC;
     `;
