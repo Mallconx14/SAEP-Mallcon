@@ -1,23 +1,22 @@
-const mysql = require('mysql2');
-const dotenv = require('dotenv');
+const { Pool } = require("pg");
+const dotenv = require("dotenv");
+
 dotenv.config();
 
-const connection = mysql.createConnection({
-    host:process.env.DB_HOST,
-    user:process.env.DB_USER,
-    password:process.env.DB_PASSWORD,
-    database:process.env.DB_NAME,
-    port:process.env.DB_PORT
+if (!process.env.DATABASE_URL) {
+  throw new Error("DATABASE_URL não foi definida. Configure a conexão do Neon no arquivo .env.");
+}
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  max: 5,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 15000,
+  keepAlive: true,
 });
 
-//conectar ao banco de dados
-connection.connect((err) => {
-    if (err) {
-        console.error("Erro ao conectar ao banco de dados:", err);
-        return;
-    } else {
-        console.log("Conexão bem-sucedida ao banco de dados");
-    }
+pool.on("error", (error) => {
+  console.error("Erro inesperado no pool PostgreSQL:", error.message);
 });
 
-module.exports = connection;
+module.exports = pool;
